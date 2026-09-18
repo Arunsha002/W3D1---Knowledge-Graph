@@ -1,0 +1,49 @@
+# Knowledge Graph RAG Study Notes
+
+## 1. Knowledge Graph RAG Overview
+* RAG stands for Retrieval-Augmented Generation.
+* It is a method that gives artificial intelligence (AI) specific facts to answer questions, preventing it from guessing.
+* A Knowledge Graph stores these facts as a connected web of ideas instead of flat text documents.
+* This structure helps the AI connect multiple pieces of information to answer complex questions.
+
+## 2. Document Loader
+* This is the very first step of the pipeline.
+* A Document Loader takes raw files, like simple text files or PDFs, and reads them.
+* It converts human-readable text into a structured format that the LangChain framework can understand.
+* This raw text serves as the foundation for the entire graph.
+
+## 3. Entity Extraction
+* An "entity" is an important noun in your text, such as a person, a company, or a location.
+* In this step, we give the loaded text to an AI model.
+* We instruct the AI to find and list all the important entities.
+* These entities become the basic building blocks (or dots) of our knowledge graph.
+
+## 4. Relationship Mapping
+* Knowing the entities is not enough; we must understand how they interact.
+* We ask the AI to find the links or actions connecting the entities together.
+* The AI formats these connections into a "Triplet".
+* A Triplet consists of three parts: a Subject, a Relationship, and an Object (for example: Elon Musk -> FOUNDED -> SpaceX).
+
+## 5. Graph Storage
+* After finding the relationships, we need a place to store them.
+* We use a graph library to hold this data in the computer's memory.
+* In graph terminology, the entities are called Nodes.
+* The relationships connecting them are called Edges.
+
+## 6. Graph Query and Retrieval
+* When a user asks a question, the system searches the stored graph.
+* It looks for words in the question that match the Nodes in the graph.
+* If it finds a match, it pulls out the connected Edges and facts.
+* These retrieved facts are then handed to the AI to answer the user's question accurately.
+
+## 7. Multi-Hop Graph Traversal
+* Basic retrieval only looks at direct, one-step connections.
+* Multi-hop traversal allows the system to walk further down the chain of connections.
+* It looks at the neighbors, and then the neighbors of those neighbors.
+* This allows the AI to piece together distant facts to answer multi-part questions.
+
+## 8. Guardrails and Logical Deduction
+* Guardrails are strict instructions that stop the AI from making up facts, which is called hallucination.
+* We tell the AI to only use the facts retrieved from the graph.
+* However, we also allow the AI to use basic logical deduction.
+* This means the AI is allowed to understand that if a company was "rebranded" to a new name, the old name was its original name, without breaking the rules.
