@@ -1,0 +1,7 @@
+streamlit
+networkx
+pyvis
+matplotlib
+pandas
+streamlit-agraph
+python-dotenv
